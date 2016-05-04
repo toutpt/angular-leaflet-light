@@ -15,5 +15,13 @@ module.exports = {
     externals: {
         'angular': 'angular',
         'leaflet': 'L'
-    }
+    },
+    devServer: {
+        contentBase: __dirname,
+        //hot: true,
+        inline: true,
+        progress: true,
+        color: true
+
+    },
 };
