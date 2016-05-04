@@ -8,7 +8,7 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test": "karma start --single-run",
+    "test": "karma start tests/karma.headless.conf.js --single-run",
     "postinstall": "webpack",
     "build": "webpack"
   },
@@ -28,7 +28,13 @@
     "karma-coverage": "^1.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
     "ng-describe": "^1.8.0",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.3",
     "webpack": "^1.13.0"
+  },
+  "peerDependencies": {
+    "phantomjs-prebuilt": ">=1.9"
   }
 }

@@ -6,10 +6,10 @@ module.exports = function(config){
         },
         files : [
             // libraries
-            {pattern: 'node_modules/angular/angular.js', watched: false, included: true, served: true},
-            {pattern: 'node_modules/leaflet/dist/leaflet.js', watched: false, included: true, served: true},
-            {pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false, included: true, served: true},
-            {pattern: 'node_modules/ng-describe/dist/ng-describe.js', watched: false, included: true, served: true},
+            {pattern: '../node_modules/angular/angular.js', watched: false, included: true, served: true},
+            {pattern: '../node_modules/leaflet/dist/leaflet.js', watched: false, included: true, served: true},
+            {pattern: '../node_modules/angular-mocks/angular-mocks.js', watched: false, included: true, served: true},
+            {pattern: '../node_modules/ng-describe/dist/ng-describe.js', watched: false, included: true, served: true},
 
             /* DOESN T work because we need to build the app so use built.js instead
             'src/app.js',
@@ -22,8 +22,8 @@ module.exports = function(config){
             'src/openresa/*.js',
             'src/parcauto/*.js',
             'src/patrimoine/*.js',*/
-            {pattern: 'dist/bundle.js', watched: true, included: true, nocache: true},
-            {pattern: 'tests/unit/*.js', watched: true, included: true, nocache: true}
+            {pattern: '../dist/bundle.js', watched: true, included: true, nocache: true},
+            {pattern: 'unit/*.js', watched: true, included: true, nocache: true}
         ],
         exclude : [
         ],

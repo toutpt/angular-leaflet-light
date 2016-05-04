@@ -3,6 +3,9 @@ Angular Leaflet Light
 
 [![Build Status](https://travis-ci.org/toutpt/angular-leaflet-light.svg?branch=master)](https://travis-ci.org/toutpt/angular-leaflet-light)
 
+[![Dependencies](https://david-dm.org/toutpt/angular-leaflet-light.svg)](https://david-dm.org/toutpt/angular-leaflet-light)
+
+
 This project aims at providing a leaflet integration for angularjs.
 
 Why do not use angular-leaflet from tombatossals ?
