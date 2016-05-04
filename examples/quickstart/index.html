@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>angular leaflet quick start</title>
+	<link rel="stylesheet" href="../../node_modules/leaflet/dist/leaflet.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="../../node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="../../node_modules/leaflet/dist/leaflet.js"></script>
+	<script type="text/javascript" src="../../dist/bundle.js"></script>
+	<script type="text/javascript">
+		(function () {
+			'use strict';
+			angular.module('example', ['angular-leaflet'])
+			/*
+			To provide default configuration to leaflet just use 
+			leafletServiceProvider.settings
+			 */
+			.config(function config(leafletServiceProvider) {
+				leafletServiceProvider.settings = {
+					imagePath: '../../node_modules/leaflet/dist'
+				};
+			})
+			.controller('ExampleCtrl', function ExampleCtrl($scope) {
+				var $ctrl = this;
+				this.center = {};
+				this.zoom = 0;
+				this.getLeaflet = function(map) {
+					this.leaflet = map;
+					$ctrl.center = map.getCenter();
+					$ctrl.zoom = map.getZoom();
+					map.on('move', function (e) {
+						$ctrl.center = e.target.getCenter();
+						if (!$scope.$$phase) {
+							$scope.$apply();
+						}
+					});
+					map.on('zoomend', function (e) {
+						$ctrl.zoom = e.target.getZoom();
+						if (!$scope.$$phase) {
+							$scope.$apply();
+						}
+					});
+				};
+				this.centerOnParis = function () {
+					this.leaflet.setView([48.85974578950385, 2.3448944091796875]);
+				};
+			});
+		})();
+	</script>
+	<style type="text/css">
+	#map {
+		height: 500px;
+	}
+	</style>
+</head>
+<body ng-app="example" ng-controller="ExampleCtrl as $ctrl">
+	<leaflet id="map" on-map-initialized="$ctrl.getLeaflet(map)"></leaflet>
+	<ul>
+		<li>center : {{$ctrl.center}}</li>
+		<li>zoom : {{$ctrl.zoom}}</li>
+	</ul>
+	<button ng-click="$ctrl.centerOnParis()">center on Paris</button>
+</body>
+</html>
