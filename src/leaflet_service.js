@@ -2,7 +2,49 @@ var module = angular.module('angular-leaflet.service.leaflet', []);
 
 var factory = module.provider('leafletService', provider);
 
+function LeafletService($compile) {
+    'ngInject';
+    this.settings = {};
+    this.data = {};
+    this.on = function(event, callback, map, scope) {
+        map.on(event, function (e) {
+            callback(e);
+            if (!scope.$$phase) {
+                scope.$apply();
+            }
+        });
+        scope.$on('$destroy', function () {
+            map.off(event, callback);
+        });
+    };
+    this.updateMapFromSettings = function (map) {
+        var s = this.settings;
+        if (s.center) {
+            map.setView([s.center.lat, s.center.lng], s.center.zoom);
+        }
+        if (s.tiles) {
+            L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
+        }
+        if (s.layers) {
+            var baselayers = {};
+            var overlays = {};
+            if (s.layers.baselayers) {
+                for (let layerid in s.layers.baselayers) {
+                    let layer = s.layers.baselayers[layerid];
+                    baselayers[layer.name] = L.tileLayer(layer.url, layer.options);
+                }
+            }
+            if (s.layers.overlays) {
+                for (let layerid in s.layers.overlays) {
+                    let layer = s.layers.overlays[layerid];
+                    overlays[layer.name] = L.tileLayer(layer.url, layer.options);
+                }
+            }
+            L.control.layers(baselayers, overlays).addTo(map);
+        }
+    };
 
+}
 function provider() {
     var defaultSettings = {
         tiles: {
@@ -19,49 +61,13 @@ function provider() {
         }
     };
     this.settings = {};
-    this.$get = function service($compile) {
+    this.$get = function factory($compile) {
         'ngInject';
-        var service = {};
+        var service = new LeafletService($compile);
         service.settings = defaultSettings;
         for (var pp in this.settings) {
             service.settings[pp] = this.settings[pp];
         }
-        //set default
-        service.data = {};
-        service.center = function (data, mapSettings) {
-            if (data.lat && data.long) {
-                mapSettings.center.lat = data.lat;
-                mapSettings.center.lng = data.long;
-            }
-        };
-        service.addCenterMarker = function (container) {
-            if (!container.markers) {
-                container.markers = {};
-            }
-            container.markers.center = angular.copy(container.center);
-            container.markers.center.focus = true;
-            container.markers.center.draggable = true;
-        };
-        service.deleteCenterMarker = function (container) {
-            if (!container.markers) {
-                container.markers = {};
-            }
-            delete container.markers.center;
-        };
-        service.getMarkerFromPoint = function (point) {
-            var data = point;
-            if (typeof point === 'string') {
-                data = JSON.parse(point);
-            }
-            return L.marker([data.coordinates[1], data.coordinates[0]]);
-        };
-        service.getPanelHTML = function (proxy, scope) {
-            let message = '<div><swif-panel ng-model="proxy"></swif-panel></div>';
-            let nscope = angular.extend(scope, {
-                proxy: proxy
-            });
-            return $compile(message)(nscope)[0];
-        };
         return service;
     };
 }
