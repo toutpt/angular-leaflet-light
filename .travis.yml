@@ -4,5 +4,8 @@ cache:
     - node_modules
 node_js:
   - '4'
+before_install:
+  - npm i -g webpack
 after_success:
-  - npm run tests
+  - npm run build
+  - npm run test
