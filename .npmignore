@@ -1,0 +1,15 @@
+*.orig
+*.project
+.htaccess
+*.swp
+*.tar.gz
+/node_modules
+/tests/coverage
++.babelrc
++.jshintrc
++.travis.yml
++/tests
++/webpack*
++.editorconfig
++.npmignore
++/gh-pages
