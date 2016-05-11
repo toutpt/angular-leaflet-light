@@ -13,7 +13,6 @@
     "dev": "webpack-dev-server --watch",
     "gh-pages": "rm -rf gh-pages/dist && webpack && mv dist gh-pages/",
     "prepublish": "webpack && webpack --config webpack.config.min.js"
-    "postpublish": "git tag"
   },
   "author": {
     "name": "Jean-Michel FRANCOIS aka toutpt",
