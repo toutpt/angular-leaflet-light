@@ -14,7 +14,6 @@ ngDescribe({
             var settings = deps.leafletService.settings;
             expect(settings.center.zoom).toBe(12);
         });
-
     }
 
 });

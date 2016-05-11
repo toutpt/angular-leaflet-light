@@ -4,12 +4,20 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         path: __dirname,
-        filename: "dist/bundle.js"
+        filename: "dist/angular-leaflet.js",
+        libraryTarget: 'umd',
+        library: ['angular-leaflet-light']
     },
     module: {
         loaders: [
             { test: /\.css$/, loader: "style!css" },
-            { test: path.join(__dirname, 'src'), loader: 'babel-loader'}
+            {
+               test: path.join(__dirname, 'src'),
+               loader: 'babel-loader',
+               query: {
+                   presets: ['es2015']
+               }
+            }
         ]
     },
     externals: {
