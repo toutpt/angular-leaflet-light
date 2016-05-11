@@ -9,8 +9,9 @@
   "main": "dist/bundle.js",
   "scripts": {
     "test": "karma start tests/karma.headless.conf.js --single-run",
-    "postinstall": "webpack",
-    "build": "webpack"
+    "build": "webpack && webpack --config webpack.config.min.js",
+    "dev": "webpack-dev-server --watch",
+    "gh-pages": "rm -rf gh-pages/dist && webpack && mv dist gh-pages/"
   },
   "author": {
     "name": "Jean-Michel FRANCOIS aka toutpt",
