@@ -49,6 +49,8 @@
 					<h1>Angular + Leaflet</h1>
 					<hr>
 					<p>Start to use leaflet with your favorite framework</p>
+<p><a href="https://travis-ci.org/toutpt/angular-leaflet-light"><img src="https://camo.githubusercontent.com/53555dae9d29acf7609ca5d90b3d965988d30672/68747470733a2f2f7472617669732d63692e6f72672f746f757470742f616e67756c61722d6c6561666c65742d6c696768742e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/toutpt/angular-leaflet-light.svg?branch=master" style="max-width:100%;"></a> <a href="https://david-dm.org/toutpt/angular-leaflet-light"><img src="https://camo.githubusercontent.com/fee637a40b0d42b9c69fa0cb75ba8c3055ef09c9/68747470733a2f2f64617669642d646d2e6f72672f746f757470742f616e67756c61722d6c6561666c65742d6c696768742e737667" alt="Dependencies" data-canonical-src="https://david-dm.org/toutpt/angular-leaflet-light.svg" style="max-width:100%;"></a></p>
+
 				</header>
 			</div>
 
@@ -63,6 +65,49 @@
 			<div class="col-md-4">
 				<h1>How</h1>
 				<p>Just add angular+leaflet and this libs and you will be able to get the leaflet object with a service</p>
+			</div>
+			<div class="col-md-12">
+				<article class="markdown-body entry-content" itemprop="text">
+					<p>This project aims at providing a leaflet integration for angularjs.</p>
+
+					<h2>Why do not use angular-leaflet from tombatossals ?</h2>
+
+					<p>The first integration of leaflet in angular has been done by David Rubert
+					aka tombatossals:</p>
+
+					<p><a href="https://github.com/tombatossals/angular-leaflet-directive">https://github.com/tombatossals/angular-leaflet-directive</a></p>
+
+					<p>Now this project is maintains and updated by the famous angular-ui team:</p>
+
+					<p><a href="https://github.com/angular-ui/ui-leaflet">https://github.com/angular-ui/ui-leaflet</a></p>
+
+					<p>So why should I do it again ?
+					Because both provide something that is not leaflet.</p>
+
+					<p>Theses projects provides advanced integration into angular but ...</p>
+
+					<ul>
+						<li>geojson (why the hell should I have only one geojson)</li>
+						<li>slow on mobile (may be because there are lots of watchers on quite big objects)</li>
+						<li>hard to customize (try to create a directive that wrap it...)</li>
+					</ul>
+
+					<p>I have use tombatossals's implementation on many project before that time where I find how I would like it to be.</p>
+
+					<h2>So what is angular leaflet light ?</h2>
+
+					<p>A simple directive that display a map and provide a callback with the map object, so you can do what ever you want.</p>
+
+					<p>A simple service add some common utils to handle things like compile popup with your data from the scope + default settings for all leaflet maps (using in the init so no watcher on it).</p>
+
+					<pre><code>&lt;leaflet id="mymap" on-map-initialized="customizeMyMap(map)"&gt;&lt;/leaflet&gt;
+					</code></pre>
+
+					<p>You can also access the map using the service:</p>
+
+					<pre><code>leafletService.data.mymap;
+					</code></pre>
+				</article>
 			</div>
 		</div>
 	</div>
