@@ -4,5 +4,4 @@
 *.swp
 *.tar.gz
 /node_modules
-/dist
 /tests/coverage
