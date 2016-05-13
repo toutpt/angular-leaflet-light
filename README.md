@@ -18,7 +18,7 @@ Angular Leaflet Light
 [npm-icon]: https://nodei.co/npm/angular-leaflet-light.png?downloads=true
 [npm-url]: https://npmjs.org/package/angular-leaflet-light
 [travis-ci-image]: https://travis-ci.org/toutpt/angular-leaflet-light.png?branch=master
-[travis-ci-url]: https://travis-ci.org/toutpt/travis-ci
+[travis-ci-url]: https://travis-ci.org/toutpt/angular-leaflet-light
 
 [coverage-image]: https://coveralls.io/repos/toutpt/angular-leaflet-light/badge.png
 [coverage-url]: https://coveralls.io/r/toutpt/angular-leaflet-light
