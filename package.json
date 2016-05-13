@@ -7,7 +7,7 @@
   },
   "main": "dist/angular-leaflet.js",
   "scripts": {
-    "test": "karma start tests/karma.headless.conf.js --single-run",
+    "test": "karma start karma/karma.travis.conf.js --single-run",
     "build": "webpack && webpack --config webpack.config.min.js",
     "dev": "webpack-dev-server --watch",
     "gh-pages": "rm -rf gh-pages/dist && webpack && mv dist gh-pages/",
