@@ -1,10 +1,9 @@
 {
   "name": "angular-leaflet-light",
-  "version": "0.0.3",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/toutpt/angular-leaflet-light.git"
+    "url": "https://github.com/toutpt/angular-leaflet-light.git"
   },
   "main": "dist/angular-leaflet.js",
   "scripts": {
@@ -12,7 +11,8 @@
     "build": "webpack && webpack --config webpack.config.min.js",
     "dev": "webpack-dev-server --watch",
     "gh-pages": "rm -rf gh-pages/dist && webpack && mv dist gh-pages/",
-    "prepublish": "webpack && webpack --config webpack.config.min.js"
+    "prepublish": "webpack && webpack --config webpack.config.min.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": {
     "name": "Jean-Michel FRANCOIS aka toutpt",
@@ -36,7 +36,8 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "ng-describe": "^1.8.0",
     "phantomjs-prebuilt": "^2.1.3",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "semantic-release": "^4.3.5"
   },
   "peerDependencies": {
     "phantomjs-prebuilt": ">=1.9"
