@@ -1,4 +1,3 @@
-import service from './leaflet.service';
 import provider from './leaflet.provider';
 import controller from './leaflet.controller';
 
@@ -9,5 +8,4 @@ export default angular.module('angular-leaflet', [
     bindings: {
         onMapInitialized: '&'
     }
-}).provider('leafletService', provider)
-.service('leafletService', service);
+}).provider('leafletService', provider);

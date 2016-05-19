@@ -3,9 +3,9 @@ import LeafletService from './leaflet.service';
 function provider() {
     var defaultSettings = {
         tiles: {
-            url: "http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+            url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
             options: {
-                attribution: "&copy; Openstreetmap France | &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
+                attribution: '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 maxZoom: 19
             }
         },
