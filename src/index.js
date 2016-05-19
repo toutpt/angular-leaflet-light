@@ -1,9 +1,13 @@
-import angular from 'angular';
-import {module as service} from './leaflet_service.js';
-import {module as component} from './leaflet_component.js';
+import service from './leaflet.service';
+import provider from './leaflet.provider';
+import controller from './leaflet.controller';
 
-angular.module('angular-leaflet', [
-    service.name,
-    component.name
-]);
-
+export default angular.module('angular-leaflet', [
+]).component('leaflet', {
+    template: '<div></div>',
+    controller: controller,
+    bindings: {
+        onMapInitialized: '&'
+    }
+}).provider('leafletService', provider)
+.service('leafletService', service);

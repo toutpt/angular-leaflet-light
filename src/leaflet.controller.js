@@ -12,7 +12,9 @@ function leafletCtrl($element, leafletService) {
         div.attr('class', $element.attr('class'));
     };
     this.$postLink = function () {
-        L.Icon.Default.imagePath = leafletService.settings.imagePath;
+        if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
+            L.Icon.Default.imagePath = leafletService.settings.imagePath;
+        }
         leafletService.data[$ctrl.mapid] = L.map($ctrl.mapid);
         leafletService.updateMapFromSettings(leafletService.data[$ctrl.mapid]);
         $ctrl.onMapInitialized({map: leafletService.data[$ctrl.mapid]});

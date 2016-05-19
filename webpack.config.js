@@ -20,10 +20,6 @@ module.exports = {
             }
         ]
     },
-    externals: {
-        'angular': 'angular',
-        'leaflet': 'L'
-    },
     devServer: {
         contentBase: __dirname,
         //hot: true,
