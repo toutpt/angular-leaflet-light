@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/toutpt/angular-leaflet-light.git"
   },
-  "main": "dist/angular-leaflet.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "karma start karma/karma.travis.conf.js --single-run",
     "build": "webpack && webpack --config webpack.config.min.js",
