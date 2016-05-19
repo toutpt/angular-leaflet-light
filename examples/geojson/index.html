@@ -21,16 +21,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<p>This example show you how to synchronize and interact with zoom and center in your angular's controller.</p>
-				<ul>
-					<li>center : {{$ctrl.center}}</li>
-					<li>zoom : {{$ctrl.zoom}}</li>
-				</ul>
-				<button class="btn btn-primary" ng-click="$ctrl.centerOnParis()">center on Paris</button>
+				<p>This example show you how to use angular-leaflet-light with geojson</p>
+				<div class="form-group">
+					<label>geojson</label>
+					<textarea rows="20" ng-model="$ctrl.geojson" class="form-control"></textarea>
+				</div>
+				<button class="btn btn-primary" ng-click="$ctrl.displayGeoJson()">Display data</button>
 			</div>
 			<ng-include src="'../display.html'"></ng-include>
 		</div>
 	</div>
-
 </body>
 </html>

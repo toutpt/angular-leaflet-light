@@ -9,7 +9,7 @@
 		var $ctrl = this;
 		this.center = {};
 		this.zoom = 0;
-		this.getLeaflet = function(map) {
+		this.onMapInitialized = function(map) {
 			this.leaflet = map;
 			$ctrl.center = map.getCenter();
 			$ctrl.zoom = map.getZoom();

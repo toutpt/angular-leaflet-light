@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"), require("L"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["angular", "L"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["angular-leaflet-light"] = factory(require("angular"), require("L"));
+		exports["angular-leaflet-light"] = factory();
 	else
-		root["angular-leaflet-light"] = factory(root["angular"], root["L"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__) {
+		root["angular-leaflet-light"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,23 +56,73 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _angular = __webpack_require__(1);
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
-	var _angular2 = _interopRequireDefault(_angular);
+	var _leaflet = __webpack_require__(1);
 
-	var _leaflet_service = __webpack_require__(2);
+	var _leaflet2 = _interopRequireDefault(_leaflet);
 
-	var _leaflet_component = __webpack_require__(3);
+	var _leaflet3 = __webpack_require__(3);
+
+	var _leaflet4 = _interopRequireDefault(_leaflet3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('angular-leaflet', [_leaflet_service.module.name, _leaflet_component.module.name]);
+	exports.default = angular.module('angular-leaflet', []).component('leaflet', {
+	    template: '<div></div>',
+	    controller: _leaflet4.default,
+	    bindings: {
+	        onMapInitialized: '&'
+	    }
+	}).provider('leafletService', _leaflet2.default);
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _leaflet = __webpack_require__(2);
+
+	var _leaflet2 = _interopRequireDefault(_leaflet);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function provider() {
+	    var defaultSettings = {
+	        tiles: {
+	            url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+	            options: {
+	                attribution: '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	                maxZoom: 19
+	            }
+	        },
+	        center: {
+	            lat: 47.21117290969667,
+	            lng: -1.5569686889648438,
+	            zoom: 12
+	        }
+	    };
+	    this.settings = {};
+	    this.$get = function factory($compile) {
+	        'ngInject';
+
+	        var service = new _leaflet2.default($compile);
+	        service.settings = defaultSettings;
+	        for (var pp in this.settings) {
+	            service.settings[pp] = this.settings[pp];
+	        }
+	        return service;
+	    };
+	}
+
+	exports.default = provider;
 
 /***/ },
 /* 2 */
@@ -83,10 +133,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var _module = angular.module('angular-leaflet.service.leaflet', []);
-
-	var factory = _module.provider('leafletService', provider);
-
 	function LeafletService($compile) {
 	    'ngInject';
 
@@ -130,76 +176,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	}
-	function provider() {
-	    var defaultSettings = {
-	        tiles: {
-	            url: "http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
-	            options: {
-	                attribution: "&copy; Openstreetmap France | &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
-	                maxZoom: 19
-	            }
-	        },
-	        center: {
-	            lat: 47.21117290969667,
-	            lng: -1.5569686889648438,
-	            zoom: 12
-	        }
-	    };
-	    this.settings = {};
-	    this.$get = function factory($compile) {
-	        'ngInject';
 
-	        var service = new LeafletService($compile);
-	        service.settings = defaultSettings;
-	        for (var pp in this.settings) {
-	            service.settings[pp] = this.settings[pp];
-	        }
-	        return service;
-	    };
-	}
-
-	exports.module = _module;
+	exports.default = LeafletService;
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.component = exports.module = undefined;
-
-	__webpack_require__(4);
-
-	var _leaflet_controller = __webpack_require__(5);
-
-	var _leaflet_controller2 = _interopRequireDefault(_leaflet_controller);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _module = angular.module('angular-leaflet.component.leaflet', []);
-
-	var component = _module.component('leaflet', {
-	    template: '<div></div>',
-	    controller: _leaflet_controller2.default,
-	    bindings: {
-	        onMapInitialized: '&'
-	    }
-	});
-
-	exports.module = _module;
-	exports.component = component;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ },
-/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -221,7 +202,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        div.attr('class', $element.attr('class'));
 	    };
 	    this.$postLink = function () {
-	        L.Icon.Default.imagePath = leafletService.settings.imagePath;
+	        if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
+	            L.Icon.Default.imagePath = leafletService.settings.imagePath;
+	        }
 	        leafletService.data[$ctrl.mapid] = L.map($ctrl.mapid);
 	        leafletService.updateMapFromSettings(leafletService.data[$ctrl.mapid]);
 	        $ctrl.onMapInitialized({ map: leafletService.data[$ctrl.mapid] });
