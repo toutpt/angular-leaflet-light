@@ -1,8 +1,5 @@
 module.exports = {
     basePath : '',
-    preprocessors: {
-      '../dist/angular-leaflet.js': ['coverage']
-    },
     files : [
         // libraries
         {pattern: '../node_modules/angular/angular.js', watched: false, included: true, served: true},
@@ -16,9 +13,10 @@ module.exports = {
     exclude : [],
     autoWatch : true,
     frameworks: ['jasmine'],
-    reporters: ['dots', 'coverage'],
+    reporters: ['dots'],
     coverageReporter: {
         dir: '../coverage/'
     },
+    preprocessors: {},
     logLevel: 'LOG_DEBUG'
 };
