@@ -41,5 +41,5 @@ function LeafletService($compile) {
     };
 
 }
-
+LeafletService.$inject = ['$compile'];
 export default LeafletService;

@@ -25,6 +25,7 @@ function provider() {
         }
         return service;
     };
+    this.$get.$inject = ['$compile'];
 }
 
 export default provider;
