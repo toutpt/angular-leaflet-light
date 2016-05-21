@@ -15,10 +15,12 @@ function leafletCtrl($element, leafletService) {
         if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
             L.Icon.Default.imagePath = leafletService.settings.imagePath;
         }
-        leafletService.data[$ctrl.mapid] = L.map($ctrl.mapid);
-        leafletService.updateMapFromSettings(leafletService.data[$ctrl.mapid]);
-        $ctrl.onMapInitialized({map: leafletService.data[$ctrl.mapid]});
+        var map = L.map($ctrl.mapid);
+        leafletService.data[$ctrl.mapid] = map;
+        leafletService.updateMapFromSettings(map);
+        $ctrl.onMapInitialized({map: map});
     };
 }
 
+leafletCtrl.$inject = ['$element', 'leafletService'];
 export default leafletCtrl;
