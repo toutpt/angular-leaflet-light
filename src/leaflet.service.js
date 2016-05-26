@@ -5,7 +5,7 @@ function LeafletService($compile) {
     this.on = function(event, callback, map, scope) {
         map.on(event, function (e) {
             callback(e);
-            if (!scope.$$phase) {
+            if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
                 scope.$apply();
             }
         });

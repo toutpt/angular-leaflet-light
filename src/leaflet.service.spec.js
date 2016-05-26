@@ -33,7 +33,7 @@ ngDescribe({
             };
             var scope = {'$on': function (event, callback) {
                 eventRegistry[event] = callback;
-            }, '$apply': function () {
+            }, '$root': {}, '$apply': function () {
                 isApplyed = true;
             }};
 
@@ -56,10 +56,18 @@ ngDescribe({
 
             iscallbackCalled = false;
             isApplyed = false;
-            scope.$$phase = true; //mark that already in digest
+            scope.$root = {'$$phase': '$apply'}; //mark that already in digest
             eventRegistry.click(data);
             expect(iscallbackCalled).toBe(true);
             expect(isApplyed).toBe(false);
+
+            iscallbackCalled = false;
+            isApplyed = false;
+            scope.$root = {'$$phase': '$digest'}; //mark that already in digest
+            eventRegistry.click(data);
+            expect(iscallbackCalled).toBe(true);
+            expect(isApplyed).toBe(false);
+
         });
     }
 
