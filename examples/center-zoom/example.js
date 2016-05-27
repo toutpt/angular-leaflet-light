@@ -5,7 +5,9 @@
 	To provide default configuration to leaflet just use 
 	leafletServiceProvider.settings
 	 */
-	.controller('ExampleCtrl', function ExampleCtrl($scope, leafletService) {
+	.controller('ExampleCtrl', ExampleCtrl);
+	ExampleCtrl.$inject = ['$scope', 'leafletService'];
+	function ExampleCtrl($scope, leafletService) {
 		var $ctrl = this;
 		this.center = {};
 		this.zoom = 0;
@@ -25,5 +27,5 @@
 		function onZoom(e) {
 			$ctrl.zoom = e.target.getZoom();
 		}
-	});
+	}
 })();

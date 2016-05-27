@@ -5,7 +5,9 @@
 	To provide default configuration to leaflet just use 
 	leafletServiceProvider.settings
 	 */
-	.controller('ExampleCtrl', function ExampleCtrl($scope, $http, leafletService) {
+	.controller('ExampleCtrl', ExampleCtrl);
+	ExampleCtrl.$inject = ['$scope', '$http', 'leafletService'];
+	function ExampleCtrl($scope, $http, leafletService) {
 		var $ctrl = this;
 		$ctrl.geojson = '';
 		$ctrl.onMapInitialized = function(map) {
@@ -31,5 +33,5 @@
 				$ctrl.leaflet.fitBounds($ctrl.geojsonlayer.getBounds());
 			}
 		};
-	});
+	}
 })();
