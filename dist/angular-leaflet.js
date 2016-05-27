@@ -70,7 +70,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('angular-leaflet', []).component('leaflet', {
+	/* angular module angular-leaflet */
+	exports.default = angular.module('angular-leaflet', [])
+
+	/**
+	 * This component provide a default leaflet map initialized with id='map'
+	 * if no id has been provided.
+	 * @usage
+	    <leaflet on-map-initialized="$ctrl.onMapInitialized(map)"></leaflet>
+	*/
+	.component('leaflet', {
 	    template: '<div></div>',
 	    controller: _leaflet4.default,
 	    bindings: {
@@ -94,7 +103,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function provider() {
+	/**
+	 * LeafletServiceProvider
+	 * @constructor
+	 */
+	function LeafletServiceProvider() {
 	    var defaultSettings = {
 	        tiles: {
 	            url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
@@ -120,9 +133,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return service;
 	    };
+	    this.$get.$inject = ['$compile'];
 	}
 
-	exports.default = provider;
+	exports.default = LeafletServiceProvider;
 
 /***/ },
 /* 2 */
@@ -133,50 +147,121 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	function LeafletService($compile) {
-	    'ngInject';
 
-	    this.settings = {};
-	    this.data = {};
-	    this.on = function (event, callback, map, scope) {
-	        map.on(event, function (e) {
-	            callback(e);
-	            if (!scope.$$phase) {
-	                scope.$apply();
-	            }
-	        });
-	        scope.$on('$destroy', function () {
-	            map.off(event, callback);
-	        });
-	    };
-	    this.updateMapFromSettings = function (map) {
-	        var s = this.settings;
-	        if (s.center) {
-	            map.setView([s.center.lat, s.center.lng], s.center.zoom);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * Class LeafletService which provide API 
+	 * to let leaflet work well with AngularJS
+	 * You can pass settings throw the provider
+	 */
+
+	var LeafletService = function () {
+	    /**
+	     * LeafletService constructor
+	     * @constructor
+	     * @param  {Object} $compile angular $compile
+	     */
+
+	    function LeafletService($complie) {
+	        _classCallCheck(this, LeafletService);
+
+	        this.settings = {};
+	        this.data = {};
+	    }
+
+	    /**
+	     * handle events
+	     * @description integrate Leaflet map.on function with angular
+	     * most of the work consist to call scope.$apply only if needed
+	     * @param {String} event the name of the event to listen like 'click'
+	     * You will find all supported event on the http://leafletjs.com/reference.html#
+	     * @param {function} callback the function to call when this event happens
+	     * @param {Object} leafletObject the object that has '.on' function
+	     * @param {Ojbect} scope the scope of your current controller/directive/component
+	    */
+
+
+	    _createClass(LeafletService, [{
+	        key: 'on',
+	        value: function on(event, callback, lobj, scope) {
+	            lobj.on(event, function (e) {
+	                callback(e);
+	                if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
+	                    scope.$apply();
+	                }
+	            });
+	            scope.$on('$destroy', function () {
+	                lobj.off(event, callback);
+	            });
 	        }
-	        if (s.tiles) {
-	            L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
-	        }
-	        if (s.layers) {
-	            var baselayers = {};
-	            var overlays = {};
-	            if (s.layers.baselayers) {
-	                for (var layerid in s.layers.baselayers) {
-	                    var layer = s.layers.baselayers[layerid];
-	                    baselayers[layer.name] = L.tileLayer(layer.url, layer.options);
+
+	        /**
+	         * @description integrate Leaflet map.on function with angular
+	         * most of the work consist to call scope.$apply only if needed.
+	         * @example
+	         var settings = {
+	            center: {
+	                lat: 47.21117290969667,
+	                lng: -1.5569686889648438,
+	                zoom: 12
+	            },
+	            tiles: {
+	                url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+	                options: {
+	                    attribution: '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	                    maxZoom: 19
+	                }
+	            },
+	            layers: {
+	                baselayers: {
+	                    layerid: {}
+	                },
+	                overlays: {
+	                    overlayid: {}
 	                }
 	            }
-	            if (s.layers.overlays) {
-	                for (var _layerid in s.layers.overlays) {
-	                    var _layer = s.layers.overlays[_layerid];
-	                    overlays[_layer.name] = L.tileLayer(_layer.url, _layer.options);
-	                }
-	            }
-	            L.control.layers(baselayers, overlays).addTo(map);
-	        }
-	    };
-	}
+	         };
+	         * @param {Object} map the leaflet map object update
+	         * @param {Object} settings
+	        */
 
+	    }, {
+	        key: 'updateMapFromSettings',
+	        value: function updateMapFromSettings(map, settings) {
+	            var s = settings || this.settings;
+	            if (s.center) {
+	                map.setView([s.center.lat, s.center.lng], s.center.zoom);
+	            }
+	            if (s.tiles) {
+	                L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
+	            }
+	            if (s.layers) {
+	                var baselayers = {};
+	                var overlays = {};
+	                if (s.layers.baselayers) {
+	                    for (var layerid in s.layers.baselayers) {
+	                        var layer = s.layers.baselayers[layerid];
+	                        baselayers[layer.name] = L.tileLayer(layer.url, layer.options);
+	                    }
+	                }
+	                if (s.layers.overlays) {
+	                    for (var _layerid in s.layers.overlays) {
+	                        var _layer = s.layers.overlays[_layerid];
+	                        overlays[_layer.name] = L.tileLayer(_layer.url, _layer.options);
+	                    }
+	                }
+	                L.control.layers(baselayers, overlays).addTo(map);
+	            }
+	        }
+	    }]);
+
+	    return LeafletService;
+	}();
+
+	LeafletService.$inject = ['$compile'];
 	exports.default = LeafletService;
 
 /***/ },
@@ -189,29 +274,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	function leafletCtrl($element, leafletService) {
-	    var $ctrl = this;
-	    this.$onInit = function () {
-	        $ctrl.mapid = $element.attr('id') || 'map';
-	        $element.removeAttr('id');
-	        var div = $element.find('div');
-	        div.attr('id', $ctrl.mapid);
-	        div.attr('id', $ctrl.mapid);
-	        div.attr('style', $element.attr('style'));
-	        div.attr('class', $element.attr('class'));
-	    };
-	    this.$postLink = function () {
-	        if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
-	            L.Icon.Default.imagePath = leafletService.settings.imagePath;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * Class LeafletCtrl
+	 * This is the controller of the leaflet directive
+	 */
+
+	var LeafletCtrl = function () {
+	    /**
+	     * LeafletCtrl constructor
+	     * @constructor
+	     * @param {Object} $element angular $element
+	     * @param {Object} leafletService local service
+	     */
+
+	    function LeafletCtrl($element, leafletService) {
+	        _classCallCheck(this, LeafletCtrl);
+
+	        this.$element = $element;
+	        this.leafletService = leafletService;
+	    }
+
+	    _createClass(LeafletCtrl, [{
+	        key: '$onInit',
+	        value: function $onInit() {
+	            this.mapid = this.$element.attr('id') || 'map';
+	            this.$element.removeAttr('id');
+	            var div = this.$element.find('div');
+	            div.attr('id', this.mapid);
+	            div.attr('id', this.mapid);
+	            div.attr('style', this.$element.attr('style'));
+	            div.attr('class', this.$element.attr('class'));
 	        }
-	        leafletService.data[$ctrl.mapid] = L.map($ctrl.mapid);
-	        leafletService.updateMapFromSettings(leafletService.data[$ctrl.mapid]);
-	        $ctrl.onMapInitialized({ map: leafletService.data[$ctrl.mapid] });
-	    };
-	}
+	    }, {
+	        key: '$postLink',
+	        value: function $postLink() {
+	            if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
+	                L.Icon.Default.imagePath = leafletService.settings.imagePath;
+	            }
+	            var map = L.map(this.mapid);
+	            this.leafletService.data[this.mapid] = map;
+	            this.leafletService.updateMapFromSettings(map);
+	            this.onMapInitialized({ map: map });
+	        }
+	    }]);
 
-	exports.default = leafletCtrl;
+	    return LeafletCtrl;
+	}();
+
+	LeafletCtrl.$inject = ['$element', 'leafletService'];
+	exports.default = LeafletCtrl;
 
 /***/ }
 /******/ ])
