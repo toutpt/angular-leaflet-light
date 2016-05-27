@@ -13,6 +13,7 @@ before_script:
   - npm prune
 after_success:
   - npm run semantic-release
+  - cat coverage/PhantomJS*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
