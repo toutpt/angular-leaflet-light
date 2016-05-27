@@ -1,117 +1,292 @@
 <!DOCTYPE html>
-<html>
 
+<html lang="en">
 <head>
-	<title>angular-leaflet-light</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-		crossorigin="anonymous">
-	<script type="text/javascript" src="https://npmcdn.com/angular@1.5.5/angular.min.js"></script>
-	<script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.min.js"></script>
-	<script type="text/javascript">
-		angular.module('ghpages', ['ui.bootstrap'])
-		.controller('MainController', function () {
-			
-		});
-	</script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Angular Leaflet Light Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
 </head>
 
-<body ng-app="ghpages">
-	<ng-include src="'./common.html'"></ng-include>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand page-scroll" href="#page-top">Angular Leaflet Light</a>
-			</div>
+<body>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="https://github.com/toutpt/angular-leaflet-light">Code</a>
-					</li>
-					<li uib-dropdown>
-						<a uib-dropdown-toggle class="btn btn-menu">Examples <span class="caret"></span></a>
-						<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-							<li><a role="menuitem" target="_blank" href="examples/default">default</a></li>
-							<li><a role="menuitem" target="_blank" href="examples/center-zoom">center & zoom</a></li>
-							<li><a role="menuitem" target="_blank" href="examples/geojson">geojson</a></li>
-						</ul>
-					</li>
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Angular Leaflet Light</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="LeafletCtrl.html">LeafletCtrl</a></li><li><a href="LeafletService.html">LeafletService</a></li><li><a href="LeafletServiceProvider.html">LeafletServiceProvider</a></li>
 				</ul>
-			</div>
-		</div>
-	</nav>
+			</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<header class="jumbotron">
-					<h1>Angular + Leaflet</h1>
-					<hr>
-					<p>Start to use leaflet with your favorite framework</p>
-<p><a href="https://travis-ci.org/toutpt/angular-leaflet-light"><img src="https://camo.githubusercontent.com/53555dae9d29acf7609ca5d90b3d965988d30672/68747470733a2f2f7472617669732d63692e6f72672f746f757470742f616e67756c61722d6c6561666c65742d6c696768742e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/toutpt/angular-leaflet-light.svg?branch=master" style="max-width:100%;"></a> <a href="https://david-dm.org/toutpt/angular-leaflet-light"><img src="https://camo.githubusercontent.com/fee637a40b0d42b9c69fa0cb75ba8c3055ef09c9/68747470733a2f2f64617669642d646d2e6f72672f746f757470742f616e67756c61722d6c6561666c65742d6c696768742e737667" alt="Dependencies" data-canonical-src="https://david-dm.org/toutpt/angular-leaflet-light.svg" style="max-width:100%;"></a></p>
+</div>
+</div>
 
-				</header>
-			</div>
 
-			<div class="col-md-4">
-				<h1>What</h1>
-				<p>The library angular-leaflet provide an easy way to setup leaflet in your project</p>
-			</div>
-			<div class="col-md-4">
-				<h1>Why</h1>
-				<p>Angular is a framework to build APPs, OSM is a huge GIS database, so lets build app to make it easy to contribute.</p>
-			</div>
-			<div class="col-md-4">
-				<h1>How</h1>
-				<p>Just add angular+leaflet and this libs and you will be able to get the leaflet object with a service</p>
-			</div>
-			<div class="col-md-12">
-				<article class="markdown-body entry-content" itemprop="text">
-					<p>This project aims at providing a leaflet integration for angularjs.</p>
+<div class="container" id="toc-content">
+<div class="row">
 
-					<h2>Why do not use angular-leaflet from tombatossals ?</h2>
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
 
-					<p>The first integration of leaflet in angular has been done by David Rubert
-					aka tombatossals:</p>
+	
+	
 
-					<p><a href="https://github.com/tombatossals/angular-leaflet-directive">https://github.com/tombatossals/angular-leaflet-directive</a></p>
 
-					<p>Now this project is maintains and updated by the famous angular-ui team:</p>
 
-					<p><a href="https://github.com/angular-ui/ui-leaflet">https://github.com/angular-ui/ui-leaflet</a></p>
 
-					<p>So why should I do it again ?
-					Because both provide something that is not leaflet.</p>
 
-					<p>Theses projects provides advanced integration into angular but ...</p>
 
-					<ul>
-						<li>geojson (why the hell should I have only one geojson)</li>
-						<li>slow on mobile (may be because there are lots of watchers on quite big objects)</li>
-						<li>hard to customize (try to create a directive that wrap it...)</li>
-					</ul>
 
-					<p>I have use tombatossals's implementation on many project before that time where I find how I would like it to be.</p>
 
-					<h2>So what is angular leaflet light ?</h2>
 
-					<p>A simple directive that display a map and provide a callback with the map object, so you can do what ever you want.</p>
 
-					<p>A simple service add some common utils to handle things like compile popup with your data from the scope + default settings for all leaflet maps (using in the init so no watcher on it).</p>
 
-					<pre><code>&lt;leaflet id="mymap" on-map-initialized="customizeMyMap(map)"&gt;&lt;/leaflet&gt;
-					</code></pre>
+	
+	
 
-					<p>You can also access the map using the service:</p>
 
-					<pre><code>leafletService.data.mymap;
-					</code></pre>
-				</article>
-			</div>
+
+
+
+    <section class="readme-section">
+        <article><h1>Angular Leaflet Light</h1><p><a href="https://npmjs.org/package/angular-leaflet-light"><img src="https://nodei.co/npm/angular-leaflet-light.png?downloads=true" alt="NPM"> </a></p>
+<p><a href="https://travis-ci.org/toutpt/angular-leaflet-light"><img src="https://travis-ci.org/toutpt/angular-leaflet-light.png?branch=master" alt="Travis CI"> </a>
+<a href="https://www.codacy.com/public/toutpt/angular-leaflet-light.git"><img src="https://api.codacy.com/project/badge/Grade/aa28c31e62114c2591e7a7e3161d48ca" alt="Codacy Badge"> </a>
+<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"> </a></p>
+<p><a href="http://packagequality.com/#?package=angular-leaflet-light"><img src="http://npm.packagequality.com/shield/angular-leaflet-light.svg" alt="Quality"> </a>
+<a href="https://coveralls.io/r/toutpt/angular-leaflet-light"><img src="https://coveralls.io/repos/toutpt/angular-leaflet-light/badge.png" alt="Coverage Status"> </a>
+<a href="https://circleci.com/gh/toutpt/angular-leaflet-light"><img src="https://circleci.com/gh/toutpt/angular-leaflet-light.svg?style=svg" alt="Circle CI"> </a></p>
+<p><a href="https://david-dm.org/toutpt/angular-leaflet-light"><img src="https://david-dm.org/toutpt/angular-leaflet-light.png" alt="dependencies"> </a>
+<a href="https://david-dm.org/toutpt/angular-leaflet-light#info=devDependencies"><img src="https://david-dm.org/toutpt/angular-leaflet-light/dev-status.png" alt="devdependencies"> </a></p>
+<p>This project aims at providing a leaflet integration for angularjs.</p>
+<h2>Please show me examples</h2><p><a href="http://toutpt.github.io/angular-leaflet-light/examples/default">Example 1: Default</a>
+<a href="https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/default">Source</a></p>
+<p><a href="http://toutpt.github.io/angular-leaflet-light/examples/center-zoom">Example 2: sync center&amp;zoom</a>
+<a href="https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/center-zoom">Source</a></p>
+<p><a href="http://toutpt.github.io/angular-leaflet-light/examples/geojson">Example 3: geojson</a>
+<a href="https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/geojson">Source</a></p>
+<h2>How to install</h2><p>install using npm</p>
+<pre class="prettyprint source"><code>npm install --save angular-leaflet-light</code></pre><p>create example.js file</p>
+<pre class="prettyprint source"><code>angular.module('MyApp', ['angular-leaflet']);</code></pre><p>create index.html file</p>
+<pre class="prettyprint source"><code>&lt;html>
+    &lt;head>
+        &lt;title>angular leaflet default&lt;/title>
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css&quot; />
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://npmcdn.com/angular@1.5.5/angular.js&quot;>&lt;/script>
+        &lt;script type=&quot;text/javascript&quot; src=&quot;https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js&quot;>&lt;/script>
+
+        &lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/angular-leaflet-light/dist/angular-leaflet.js&quot;>&lt;/script>
+
+        &lt;script type=&quot;text/javascript&quot; src=&quot;example.js&quot;>&lt;/script>
+        &lt;style type=&quot;text/css&quot;>
+        #map {
+            height: 500px;
+        }
+        &lt;/style>
+    &lt;/head>
+&lt;body ng-app=&quot;example&quot; ng-strict-di ng-cloak>
+    &lt;leaflet>&lt;/leaflet>
+&lt;/body>
+&lt;/html></code></pre><h2>Why do not use angular-leaflet from tombatossals ?</h2><p>The first integration of leaflet in angular has been done by David Rubert
+aka tombatossals:</p>
+<p>https://github.com/tombatossals/angular-leaflet-directive</p>
+<p>Now this project is maintains and updated by the famous angular-ui team:</p>
+<p>https://github.com/angular-ui/ui-leaflet</p>
+<p>So why should I do it again ?
+Because both provide something that is not leaflet.</p>
+<p>Theses projects provides advanced integration into angular but ...</p>
+<ul>
+<li>geojson (why the hell should I have only one geojson)</li>
+<li>slow on mobile (may be because there are lots of watchers on quite big objects)</li>
+<li>hard to customize (try to create a directive that wrap it...)</li>
+</ul>
+<p>I have use tombatossals's implementation on many project before that time where I find how I would like it to be.</p>
+<h2>So what is angular leaflet light ?</h2><p>A simple directive that display a map and provide a callback with the map object, so you can do what ever you want.</p>
+<p>A simple service add some common utils to handle things like compile popup with your data from the scope + default settings for all leaflet maps (using in the init so no watcher on it).</p>
+<pre class="prettyprint source"><code>&lt;leaflet id=&quot;mymap&quot; on-map-initialized=&quot;customizeMyMap(map)&quot;>&lt;/leaflet></code></pre><p>You can also access the map using the service:</p>
+<pre class="prettyprint source"><code>leafletService.data.mymap;</code></pre></article>
+    </section>
+
+
+
+
+
+
+
 		</div>
 	</div>
-</body>
 
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Search results</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	
+		on 2016-05-27
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+<script>
+	(function ( i, s, o, g, r, a, m ) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push( arguments )
+		}, i[r].l = 1 * new Date();
+		a = s.createElement( o ),
+			m = s.getElementsByTagName( o )[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore( a, m )
+	})( window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga' );
+
+	ga( 'create', 'UA-77701501-2', 'auto' );
+	ga( 'send', 'pageview' );
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+
+</body>
 </html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Angular Leaflet Light Source: src/leaflet.service.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Angular Leaflet Light</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="LeafletCtrl.html">LeafletCtrl</a></li><li><a href="LeafletService.html">LeafletService</a></li><li><a href="LeafletServiceProvider.html">LeafletServiceProvider</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: src/leaflet.service.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Class LeafletService which provide API 
+ * to let leaflet work well with AngularJS
+ * You can pass settings throw the provider
+ */
+class LeafletService {
+    /**
+     * LeafletService constructor
+     * @constructor
+     * @param  {Object} $compile angular $compile
+     */
+    constructor($complie){
+        this.settings = {};
+        this.data = {};
+    }
+
+    /**
+     * handle events
+     * @description integrate Leaflet map.on function with angular
+     * most of the work consist to call scope.$apply only if needed
+     * @param {String} event the name of the event to listen like 'click'
+     * You will find all supported event on the http://leafletjs.com/reference.html#
+     * @param {function} callback the function to call when this event happens
+     * @param {Object} leafletObject the object that has '.on' function
+     * @param {Ojbect} scope the scope of your current controller/directive/component
+    */
+    on(event, callback, lobj, scope) {
+        lobj.on(event, function (e) {
+            callback(e);
+            if (scope.$root.$$phase != '$apply' &amp;&amp; scope.$root.$$phase != '$digest') {
+                scope.$apply();
+            }
+        });
+        scope.$on('$destroy', function () {
+            lobj.off(event, callback);
+        });
+    }
+
+    /**
+     * @description integrate Leaflet map.on function with angular
+     * most of the work consist to call scope.$apply only if needed.
+     * @example
+     var settings = {
+        center: {
+            lat: 47.21117290969667,
+            lng: -1.5569686889648438,
+            zoom: 12
+        },
+        tiles: {
+            url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+            options: {
+                attribution: '&amp;copy; Openstreetmap France | &amp;copy; &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a>',
+                maxZoom: 19
+            }
+        },
+        layers: {
+            baselayers: {
+                layerid: {}
+            },
+            overlays: {
+                overlayid: {}
+            }
+        }
+     };
+     * @param {Object} map the leaflet map object update
+     * @param {Object} settings
+    */
+    updateMapFromSettings(map, settings) {
+        var s = settings || this.settings;
+        if (s.center) {
+            map.setView([s.center.lat, s.center.lng], s.center.zoom);
+        }
+        if (s.tiles) {
+            L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
+        }
+        if (s.layers) {
+            var baselayers = {};
+            var overlays = {};
+            if (s.layers.baselayers) {
+                for (let layerid in s.layers.baselayers) {
+                    let layer = s.layers.baselayers[layerid];
+                    baselayers[layer.name] = L.tileLayer(layer.url, layer.options);
+                }
+            }
+            if (s.layers.overlays) {
+                for (let layerid in s.layers.overlays) {
+                    let layer = s.layers.overlays[layerid];
+                    overlays[layer.name] = L.tileLayer(layer.url, layer.options);
+                }
+            }
+            L.control.layers(baselayers, overlays).addTo(map);
+        }
+    }
+}
+LeafletService.$inject = ['$compile'];
+export default LeafletService;</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Search results</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	
+		on 2016-05-27
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+<script>
+	(function ( i, s, o, g, r, a, m ) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push( arguments )
+		}, i[r].l = 1 * new Date();
+		a = s.createElement( o ),
+			m = s.getElementsByTagName( o )[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore( a, m )
+	})( window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga' );
+
+	ga( 'create', 'UA-77701501-2', 'auto' );
+	ga( 'send', 'pageview' );
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+
+</body>
+</html>
