@@ -1,7 +1,6 @@
 Angular Leaflet Light
 =====================
 
-
 [![NPM][npm-icon] ][npm-url]
 
 [![Travis CI][travis-ci-image] ][travis-ci-url]
@@ -40,6 +39,54 @@ Angular Leaflet Light
 
 
 This project aims at providing a leaflet integration for angularjs.
+
+Please show me examples
+-----------------------
+
+[Example 1: Default](http://toutpt.github.io/angular-leaflet-light/examples/default)
+[Source](https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/default)
+
+[Example 2: sync center&zoom](http://toutpt.github.io/angular-leaflet-light/examples/center-zoom)
+[Source](https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/center-zoom)
+
+[Example 3: geojson](http://toutpt.github.io/angular-leaflet-light/examples/geojson)
+[Source](https://github.com/toutpt/angular-leaflet-light/tree/gh-pages/examples/geojson)
+
+
+How to install
+--------------
+
+install using npm
+
+    npm install --save angular-leaflet-light
+
+create example.js file
+
+    angular.module('MyApp', ['angular-leaflet']);
+
+create index.html file
+
+    <html>
+		<head>
+			<title>angular leaflet default</title>
+			<link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<script type="text/javascript" src="https://npmcdn.com/angular@1.5.5/angular.js"></script>
+			<script type="text/javascript" src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+			
+			<script type="text/javascript" src="node_modules/angular-leaflet-light/dist/angular-leaflet.js"></script>
+			
+			<script type="text/javascript" src="example.js"></script>
+			<style type="text/css">
+			#map {
+				height: 500px;
+			}
+			</style>
+		</head>
+    <body ng-app="example" ng-strict-di ng-cloak>
+        <leaflet></leaflet>
+    </body>
+    </html>
 
 Why do not use angular-leaflet from tombatossals ?
 --------------------------------------------------

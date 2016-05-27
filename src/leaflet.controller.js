@@ -1,26 +1,37 @@
-
-
-function leafletCtrl($element, leafletService) {
-    var $ctrl = this;
-    this.$onInit = function () {
-        $ctrl.mapid = $element.attr('id') || 'map';
-        $element.removeAttr('id');
-        var div = $element.find('div');
-        div.attr('id', $ctrl.mapid);
-        div.attr('id', $ctrl.mapid);
-        div.attr('style', $element.attr('style'));
-        div.attr('class', $element.attr('class'));
-    };
-    this.$postLink = function () {
+/**
+ * Class LeafletCtrl
+ * This is the controller of the leaflet directive
+ */
+class LeafletCtrl {
+    /**
+     * LeafletCtrl constructor
+     * @constructor
+     * @param {Object} $element angular $element
+     * @param {Object} leafletService local service
+     */
+    constructor($element, leafletService) {
+        this.$element = $element;
+        this.leafletService = leafletService;
+    }
+    $onInit() {
+        this.mapid = this.$element.attr('id') || 'map';
+        this.$element.removeAttr('id');
+        var div = this.$element.find('div');
+        div.attr('id', this.mapid);
+        div.attr('id', this.mapid);
+        div.attr('style', this.$element.attr('style'));
+        div.attr('class', this.$element.attr('class'));
+    }
+    $postLink() {
         if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
             L.Icon.Default.imagePath = leafletService.settings.imagePath;
         }
-        var map = L.map($ctrl.mapid);
-        leafletService.data[$ctrl.mapid] = map;
-        leafletService.updateMapFromSettings(map);
-        $ctrl.onMapInitialized({map: map});
-    };
+        var map = L.map(this.mapid);
+        this.leafletService.data[this.mapid] = map;
+        this.leafletService.updateMapFromSettings(map);
+        this.onMapInitialized({map: map});
+    }
 }
 
-leafletCtrl.$inject = ['$element', 'leafletService'];
-export default leafletCtrl;
+LeafletCtrl.$inject = ['$element', 'leafletService'];
+export default LeafletCtrl;

@@ -1,0 +1,22 @@
+{
+    "source": {
+        "include": ["src/index.js"],
+        "excludePattern": "node_modules/*"
+    },
+    "out": "gh-pages",
+    "plugins": [],
+    "templates": {
+        "outputSourceFiles"     : true,
+        "systemName"            : "Angular Leaflet Light",
+        "navType"               : "vertical",
+        "theme"                 : "cerulean",
+        "linenums"              : true,
+        "collapseSymbols"       : false,
+        "inverseNav"            : false,
+        "dateFormat"            : "YYYY-MM-DD",
+        "analytics": {
+            "ua": "UA-77701501-2",
+            "domain": "auto"
+        }
+    }
+}

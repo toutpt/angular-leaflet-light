@@ -1,6 +1,10 @@
 import LeafletService from './leaflet.service';
 
-function provider() {
+/**
+ * LeafletServiceProvider
+ * @constructor
+ */
+function LeafletServiceProvider() {
     var defaultSettings = {
         tiles: {
             url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
@@ -28,4 +32,4 @@ function provider() {
     this.$get.$inject = ['$compile'];
 }
 
-export default provider;
+export default LeafletServiceProvider;
