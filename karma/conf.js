@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
     basePath : '',
     files : [
@@ -7,8 +9,8 @@ module.exports = {
         {pattern: '../node_modules/angular-mocks/angular-mocks.js', watched: false, included: true, served: true},
         {pattern: '../node_modules/ng-describe/dist/ng-describe.js', watched: false, included: true, served: true},
 
-        '../dist/angular-leaflet.js',
-        {pattern: '../src/*.spec.js', watched: true, included: true, nocache: true}
+        '../src/index.js',
+        {pattern: '../src/*.spec.js', watched: true, included: true},
     ],
     exclude : [],
     autoWatch : true,
@@ -17,6 +19,24 @@ module.exports = {
     coverageReporter: {
         dir: '../coverage/'
     },
-    preprocessors: {},
+    webpack: {
+        resolve: {
+            extensions: ["", ".js"]
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015']
+                    }
+                }
+            ]
+        }
+    },
+    preprocessors: {
+        '../src/*.js': ['webpack']
+    },
     logLevel: 'LOG_DEBUG'
 };
