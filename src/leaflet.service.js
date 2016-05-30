@@ -42,10 +42,12 @@ class LeafletService {
      * @example
      var settings = {
         center: {
-            lat: 47.21117290969667,
-            lng: -1.5569686889648438,
-            zoom: 12
+            lat: 47.184112659842015,
+            lng: -1.619110107421875,
+            zoom: 17
         },
+        minZoom: 12,
+        maxBounds: [[47.143496,-1.652756],[47.296462,-1.461868]]
         tiles: {
             url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
             options: {
@@ -69,6 +71,15 @@ class LeafletService {
         var s = settings || this.settings;
         if (s.center) {
             map.setView([s.center.lat, s.center.lng], s.center.zoom);
+        }
+        if (s.minZoom) {
+            map.options.minZoom = s.minZoom;
+        }
+        if (s.maxZoom) {
+            map.options.maxZoom = s.maxZoom;
+        }
+        if (s.maxBounds) {
+            map.setMaxBounds(s.maxBounds);
         }
         if (s.tiles) {
             L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
