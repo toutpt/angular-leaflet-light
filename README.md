@@ -125,3 +125,4 @@ A simple service add some common utils to handle things like compile popup with 
 You can also access the map using the service:
 
 	leafletService.data.mymap;
+
