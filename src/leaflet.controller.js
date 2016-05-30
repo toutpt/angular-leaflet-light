@@ -21,12 +21,13 @@ class LeafletCtrl {
         div.attr('id', this.mapid);
         div.attr('style', this.$element.attr('style'));
         div.attr('class', this.$element.attr('class'));
+        this.container = div[0];
     }
     $postLink() {
-        if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
-            L.Icon.Default.imagePath = leafletService.settings.imagePath;
+        if (!L.Icon.Default.imagePath && this.leafletService.settings.imagePath) {
+            L.Icon.Default.imagePath = this.leafletService.settings.imagePath;
         }
-        var map = L.map(this.mapid);
+        var map = L.map(this.container);
         this.leafletService.data[this.mapid] = map;
         this.leafletService.updateMapFromSettings(map);
         this.onMapInitialized({map: map});
