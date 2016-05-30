@@ -10,9 +10,6 @@ module.exports = {
         {pattern: '../node_modules/ng-describe/dist/ng-describe.js', watched: false, included: true, served: true},
 
         '../src/index.js',
-        'leaflet.controller.js',
-        'leaflet.provider.js',
-        'leaflet.service.js',
         {pattern: '../src/*.spec.js', watched: true, included: true},
     ],
     exclude : [],
