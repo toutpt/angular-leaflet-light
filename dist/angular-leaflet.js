@@ -204,10 +204,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @example
 	         var settings = {
 	            center: {
-	                lat: 47.21117290969667,
-	                lng: -1.5569686889648438,
-	                zoom: 12
+	                lat: 47.184112659842015,
+	                lng: -1.619110107421875,
+	                zoom: 17
 	            },
+	            minZoom: 12,
+	            maxBounds: [[47.143496,-1.652756],[47.296462,-1.461868]]
 	            tiles: {
 	                url: 'http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
 	                options: {
@@ -234,6 +236,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var s = settings || this.settings;
 	            if (s.center) {
 	                map.setView([s.center.lat, s.center.lng], s.center.zoom);
+	            }
+	            if (s.minZoom) {
+	                map.options.minZoom = s.minZoom;
+	            }
+	            if (s.maxZoom) {
+	                map.options.maxZoom = s.maxZoom;
+	            }
+	            if (s.maxBounds) {
+	                map.setMaxBounds(s.maxBounds);
 	            }
 	            if (s.tiles) {
 	                L.tileLayer(s.tiles.url, s.tiles.options).addTo(map);
@@ -308,14 +319,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            div.attr('id', this.mapid);
 	            div.attr('style', this.$element.attr('style'));
 	            div.attr('class', this.$element.attr('class'));
+	            this.container = div[0];
 	        }
 	    }, {
 	        key: '$postLink',
 	        value: function $postLink() {
-	            if (!L.Icon.Default.imagePath && leafletService.settings.imagePath) {
-	                L.Icon.Default.imagePath = leafletService.settings.imagePath;
+	            if (!L.Icon.Default.imagePath && this.leafletService.settings.imagePath) {
+	                L.Icon.Default.imagePath = this.leafletService.settings.imagePath;
 	            }
-	            var map = L.map(this.mapid);
+	            var map = L.map(this.container);
 	            this.leafletService.data[this.mapid] = map;
 	            this.leafletService.updateMapFromSettings(map);
 	            this.onMapInitialized({ map: map });
