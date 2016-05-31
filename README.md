@@ -20,7 +20,7 @@ Angular Leaflet Light
 [travis-ci-url]: https://travis-ci.org/toutpt/angular-leaflet-light
 
 [coverage-image]: https://coveralls.io/repos/github/toutpt/angular-leaflet-light/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/toutpt/angular-leaflet-light?branch=master
+[coverage-url]: https://toutpt.github.io/angular-leaflet-light/coverage/index.html
 [dependencies-image]: https://david-dm.org/toutpt/angular-leaflet-light.png
 [dependencies-url]: https://david-dm.org/toutpt/angular-leaflet-light
 [devdependencies-image]: https://david-dm.org/toutpt/angular-leaflet-light/dev-status.png
