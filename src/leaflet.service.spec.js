@@ -7,7 +7,7 @@
 ngDescribe({
     modules: 'angular-leaflet',
     inject: ['leafletService'],
-    tests: function (deps) {
+    tests (deps) {
         it('should have default settings', function() {
             var settings = deps.leafletService.settings;
             expect(settings.center.zoom).toBe(12);

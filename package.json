@@ -10,7 +10,7 @@
     "test": "karma start karma/karma.travis.conf.js --single-run",
     "build": "webpack && webpack --config webpack.config.min.js",
     "dev": "webpack-dev-server --watch",
-    "gh-pages": "rm -rf gh-pages/dist && rm -rf gh-pages/coverage && webpack && mv dist gh-pages/ && cp -R coverage/*/lcov-report gh-pages/coverage",
+    "gh-pages": "rm -rf gh-pages/dist && rm -rf gh-pages/coverage && webpack && mv dist gh-pages/ && cp -R coverage/Phant*/lcov-report gh-pages/coverage",
     "prepublish": "webpack && webpack --config webpack.config.min.js",
     "coveralls": "npm run test && ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",

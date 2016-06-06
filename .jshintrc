@@ -11,8 +11,7 @@
         "module": false,
         "inject": false,
         "ngDescribe": false,
-        "it": false,
-        "expect": false
+        "L": false
     },
     "camelcase": false,
     "latedef": "nofunc"

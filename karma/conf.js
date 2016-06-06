@@ -21,7 +21,7 @@ module.exports = {
     },
     webpack: {
         resolve: {
-            extensions: ["", ".js"]
+            extensions: ['', '.js']
         },
         module: {
             loaders: [

@@ -7,7 +7,7 @@ ngDescribe({
     modules: 'angular-leaflet',
     inject: ['leafletService'],
     element: '<leaflet></leaflet>',
-    tests: function (deps) {
+    tests (deps) {
         it('should have map', function() {
             expect(deps.element.text()).toContain('+-Leaflet | © Openstreetmap France | © OpenStreetMap');
         });
@@ -29,9 +29,9 @@ ngDescribe({
             deps.leafletService.settings.maxZoom = 15;
             deps.leafletService.settings.maxBounds = [[47.143496,-1.652756],[47.296462,-1.461868]];
             deps.leafletService.settings.tiles = {
-                url: "http://{s}.foo.bar/{z}/{x}/{y}.png",
+                url: 'http://{s}.foo.bar/{z}/{x}/{y}.png',
                 options: {
-                    attribution: "hello world",
+                    attribution: 'hello world',
                     maxZoom: 19
                 }
             };
@@ -41,7 +41,7 @@ ngDescribe({
                     type: 'xyz',
                     url: 'http://{s}.foo.bar/{z}/{x}/{y}.png',
                     options: {
-                        attribution: "hello world",
+                        attribution: 'hello world',
                         maxZoom: 19
                     }
                 }
