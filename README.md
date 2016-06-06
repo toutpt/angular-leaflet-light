@@ -6,6 +6,7 @@ Angular Leaflet Light
 [![Travis CI][travis-ci-image] ][travis-ci-url]
 [![Codacy Badge][codacy-image] ][codacy-url]
 [![semantic-release][semantic-image] ][semantic-url]
+[![Commitizen friendly][commitizen-image] ][commitizen-url]
 
 [![Quality][quality-badge] ][quality-url]
 [![Coverage Status][coverage-image] ][coverage-url]
@@ -30,6 +31,8 @@ Angular Leaflet Light
 [codacy-url]: https://www.codacy.com/public/toutpt/angular-leaflet-light.git
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
+[commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+[commitizen-url]: http://commitizen.github.io/cz-cli/
 
 [quality-badge]: http://npm.packagequality.com/shield/angular-leaflet-light.svg
 [quality-url]: http://packagequality.com/#?package=angular-leaflet-light
