@@ -2,6 +2,7 @@
 /*global ngDescribe:false */
 /*global it:false */
 /*global expect:false */
+/*global spyOn:false */
 
 
 ngDescribe({
@@ -69,6 +70,13 @@ ngDescribe({
             expect(isApplyed).toBe(false);
 
         });
+        it('should fixHiddenLeaflet call L.utils stuff', function () {
+            var map = {};
+            spyOn(L.Util, 'requestAnimFrame');
+            deps.leafletService.fixHiddenLeaflet(map);
+            expect(L.Util.requestAnimFrame).toHaveBeenCalled();
+        });
+
     }
 
 });

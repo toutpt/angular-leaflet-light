@@ -2,6 +2,7 @@
 /*global ngDescribe:false */
 /*global it:false */
 /*global expect:false */
+/*global spyOn:false */
 
 ngDescribe({
     modules: 'angular-leaflet',
@@ -57,6 +58,15 @@ ngDescribe({
             expect(center.lng).toBe(-1.652756);
             var maxBounds = map.options.maxBounds.toBBoxString();
             expect(maxBounds).toBe('-1.652756,47.143496,-1.461868,47.296462');
+        });
+        it('should fix if initialized in hidden stuff', function () {
+            spyOn(deps.leafletService, 'fixHiddenLeaflet');
+            expect(deps.leafletService.fixHiddenLeaflet).not.toHaveBeenCalled();
+            var controller = deps.element.isolateScope().$ctrl;
+            controller.$onChanges({leafletShow: {currentValue: false}});
+            expect(deps.leafletService.fixHiddenLeaflet).not.toHaveBeenCalled();
+            controller.$onChanges({leafletShow: {currentValue: true}});
+            expect(deps.leafletService.fixHiddenLeaflet).toHaveBeenCalled();
         });
     }
 

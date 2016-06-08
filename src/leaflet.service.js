@@ -102,6 +102,20 @@ class LeafletService {
             L.control.layers(baselayers, overlays).addTo(map);
         }
     }
+    /**
+     * If your leaflet map object is initialized in an hidden place
+     * like in a tab, you can just call this function once the container
+     * is visible.
+     * This is used by the directive with it's leaflet-show condition
+     * Found on stackoverflow: http://stackoverflow.com/questions/10762984/leaflet-map-not-displayed-properly-inside-tabbed-panel
+     */
+    fixHiddenLeaflet(map) {
+        L.Util.requestAnimFrame(
+            map.invalidateSize,
+            map, !1,
+            map._container
+        );
+    }
 }
 LeafletService.$inject = ['$compile'];
 export default LeafletService;

@@ -31,7 +31,14 @@ class LeafletCtrl {
         this.leafletService.data[this.mapid] = map;
         this.leafletService.updateMapFromSettings(map);
         this.onMapInitialized({map: map});
+        this.map = map;
     }
+    $onChanges(changesObj) {
+        if (changesObj.leafletShow.currentValue && this.map) {
+            this.leafletService.fixHiddenLeaflet(this.map);
+        }
+    }
+
 }
 
 LeafletCtrl.$inject = ['$element', 'leafletService'];
