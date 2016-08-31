@@ -72,10 +72,10 @@ create index.html file
     <html>
 		<head>
 			<title>angular leaflet default</title>
-			<link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<script type="text/javascript" src="https://npmcdn.com/angular@1.5.5/angular.js"></script>
-			<script type="text/javascript" src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+			<script type="text/javascript" src="https://unpkg.com/angular@1.5.5/angular.js"></script>
+			<script type="text/javascript" src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
 			
 			<script type="text/javascript" src="node_modules/angular-leaflet-light/dist/angular-leaflet.js"></script>
 			
