@@ -32,7 +32,7 @@
     "coveralls": "^2.11.9",
     "cz-conventional-changelog": "^1.1.6",
     "dgeni": "^0.4.2",
-    "dgeni-alive": "^0.4.0",
+    "dgeni-alive": "0.4.0",
     "grunt": "^1.0.1",
     "gulp": "^3.9.1",
     "ink-docstrap": "^1.2.0",
