@@ -33,7 +33,7 @@
     "cz-conventional-changelog": "^1.1.6",
     "dgeni": "^0.4.2",
     "dgeni-alive": "^0.4.0",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "gulp": "^3.9.1",
     "ink-docstrap": "^1.2.0",
     "jasmine-core": "^2.4.1",
